@@ -14,6 +14,8 @@ group :development do
 end
 
 gem 'materialize-sass'
+gem 'devise'
+gem 'figaro', '1.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

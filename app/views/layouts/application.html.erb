@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Blocipedia</title>
     <!--Import materialize.css-->
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
@@ -15,12 +16,33 @@
     <div class="container">
       <nav>
         <div class="nav-wrapper light-blue">
+          &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Blocipedia", root_path, class: 'center-align' %>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><%= link_to "Blocipedia", root_path %></li>
+            <% if current_user %>
+              <li><%= link_to "User Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <% end %>
           </ul>
         </div>
-      </nav></br>  
+      </nav><br />  
       
+      <% if flash[:notice] %>
+        <script>
+          Materialize.toast('<%= flash[:notice] %>', 2000, 'green');
+        </script>
+      <% elsif flash[:error] %>
+        <script>
+          Materialize.toast('<%= flash[:error] %>', 3000, 'red');
+        </script>
+      <% elsif flash[:alert] %>
+        <script>
+          Materialize.toast('<%= flash[:alert] %>', 3000, 'orange');
+        </script>
+      <% end %>
+    
       <%= yield %>
       
     </div>    
