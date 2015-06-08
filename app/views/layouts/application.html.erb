@@ -16,36 +16,32 @@
     <div class="container">
       <nav>
         <div class="nav-wrapper light-blue">
-          <div class="valign-wrapper">
-            <h4 class="valign">&nbsp;&nbsp;<%= link_to "Blocipedia", root_path %></h4>
-          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Blocipedia", root_path, class: 'center-align' %>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <% if current_user %>
-              Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to0 "Sign out", destroy_user_session_path, method: :delete %>
+              <li><%= link_to "User Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "Sign In", new_user_session_path %></li>
               <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
           </ul>
         </div>
-      </nav></br>  
+      </nav><br />  
       
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:notice] %>
-      </div>
-    <% elsif flash[:error] %>
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:error] %>
-      </div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+      <% if flash[:notice] %>
+        <script>
+          Materialize.toast('<%= flash[:notice] %>', 2000, 'green');
+        </script>
+      <% elsif flash[:error] %>
+        <script>
+          Materialize.toast('<%= flash[:error] %>', 3000, 'red');
+        </script>
+      <% elsif flash[:alert] %>
+        <script>
+          Materialize.toast('<%= flash[:alert] %>', 3000, 'orange');
+        </script>
+      <% end %>
     
       <%= yield %>
       
