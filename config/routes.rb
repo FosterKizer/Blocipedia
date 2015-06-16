@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :wikis, shallow: true
   end
   
+  resources :wikis, only: [:index]
+  
   authenticated do
     root to: "users#show", as: :authenticated
   end
