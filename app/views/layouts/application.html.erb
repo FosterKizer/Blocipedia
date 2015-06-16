@@ -19,6 +19,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Blocipedia", root_path, class: 'center-align' %>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <% if current_user %>
+              <li><%= link_to "My Wiki's", root_path %></li>
               <li><%= link_to "User Profile", edit_user_registration_path %></li>
               <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             <% else %>
