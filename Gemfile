@@ -18,6 +18,7 @@ gem 'devise'
 gem 'figaro', '1.0'
 gem 'pundit'
 gem 'faker'
+gem 'stripe'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

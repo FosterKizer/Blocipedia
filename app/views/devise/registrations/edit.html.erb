@@ -42,7 +42,14 @@
 
     <h4>Cancel my account</h4>
 
-    <p><%= button_to "Cancel my account", registration_path(resource_name), class: "btn red", data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <p><%= button_to "Cancel my account", registration_path(resource_name), class: "btn red", data: { confirm: "Are you sure?" }, method: :delete %></p><br />
+    
+    <% if current_user.role = 'Premium' %>
+      <h4>Thank you for Subscribing!</h4>
+    <% else %>
+      <h4>Upgrade to Premium</h4>
+      <%= link_to "Premium", new_charge_path, class: "btn blue" %>
+    <% end %>
     
   </div>
 </div>

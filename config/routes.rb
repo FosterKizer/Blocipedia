@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   
   resources :wikis, only: [:index]
+  resources :charges, only: [:new, :create]
   
   authenticated do
     root to: "users#show", as: :authenticated
