@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col s8 offset-s2">
+    
+    <%= form_tag charges_path do %>
+      <h4>Upgrade to Premium</h4>
+      <script 
+        class='stripe-button' 
+        src="https://checkout.stripe.com/checkout.js" 
+        data-key="<%= @stripe_btn_data[:key] %>" 
+        data-amount=<%= @stripe_btn_data[:amount] %> 
+        data-name="Blocipedia"
+        data-description="One Year Membership"
+        data-email="<%= @stripe_btn_data[:email] %>" >
+      </script>
+    <% end %>
+    
+  </div>
+</div>
