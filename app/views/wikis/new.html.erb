@@ -14,6 +14,14 @@
         <%= f.label :body %>
         <%= f.text_area :body, rows: 20, class: 'materialize-textarea' %>
       </div><br />
+    
+      <% if current_user.role == 'admin' || current_user.role == 'Premium' %>
+        <div class="field">
+          <%= f.label :private, class: 'checkbox' do %>
+          <%= f.check_box :private %> Private topic
+          <% end %>
+        </div><br />
+      <% end %>
       
       <div class="field center-align">
         <%= f.submit "Save", class: 'btn grey darken-1' %>
@@ -23,4 +31,3 @@
     
   </div>
 </div>
-

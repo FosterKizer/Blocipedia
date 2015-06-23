@@ -30,6 +30,14 @@ user.update_attributes!(
   password: 'Drummer13'
   )
 
+test = User.last
+test.skip_reconfirmation!
+test.update_attributes!(
+  name:     'Tester',
+  email:    'test@gmail.com',
+  password: 'helloworld'
+  )
+
 
 puts "Seed finished"
 puts "#{Wiki.count} wikis created"
