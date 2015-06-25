@@ -24,7 +24,7 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
     
-    @user.update(role: 'Premium')
+    @user.update(role: 'premium')
     flash[:success] = "Thanks for your subscription, #{current_user.name}!"
     redirect_to root_path
   
@@ -34,6 +34,13 @@ class ChargesController < ApplicationController
     flash[:error] = e.message
     redirect_to new_charge_path
   
+  end
+  
+  def downgrade
+    @user = current_user
+    @user.update(role: 'standard')
+    @user.make_wikis_public
+    redirect_to root_path
   end
   
 end

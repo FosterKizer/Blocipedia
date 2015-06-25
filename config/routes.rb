@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :wikis, only: [:index]
   resources :charges, only: [:new, :create]
+  delete '/downgrade', to: 'charges#downgrade'
   
   authenticated do
     root to: "users#show", as: :authenticated
