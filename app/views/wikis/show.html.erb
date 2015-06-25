@@ -2,9 +2,9 @@
   
   <div class="col s8 offset-s2">
     
-    <h3 class="center-align"><%= @wiki.title %></h3><br />
+    <h3 class="center-align"><%= markdown_to_html @wiki.title %></h3><br />
     
-    <p><%= @wiki.body %></p><br /><br />
+    <p><%= markdown_to_html @wiki.body %></p><br /><br />
     
   </div>
   
