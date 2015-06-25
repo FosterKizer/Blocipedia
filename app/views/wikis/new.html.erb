@@ -15,11 +15,10 @@
         <%= f.text_area :body, rows: 20, class: 'materialize-textarea' %>
       </div><br />
     
-      <% if current_user.role == 'admin' || current_user.role == 'Premium' %>
+      <% if current_user.role == 'admin' || current_user.role == 'premium' %>
         <div class="field">
-          <%= f.label :private, class: 'checkbox' do %>
-          <%= f.check_box :private %> Private topic
-          <% end %>
+          <%= f.check_box :private %>
+          <%= f.label :private %>
         </div><br />
       <% end %>
       
