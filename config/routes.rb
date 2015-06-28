@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:update, :show] do
-    resources :wikis, shallow: true
+    resources :wikis, shallow: true do
+      resources :collaborators
+    end
   end
   
   resources :wikis, only: [:index]

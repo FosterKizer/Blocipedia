@@ -2,7 +2,9 @@
   
   <div class="col s8 offset-s2">
     
-    <h3 class="center-align"><%= markdown_to_html @wiki.title %></h3><br />
+    <h4 class="center-align"><%= markdown_to_html @wiki.title %></h4>
+    
+    <p class="center-align">Creator: <%= @wiki.user.name %></p><br />
     
     <p><%= markdown_to_html @wiki.body %></p><br /><br />
     
@@ -14,6 +16,18 @@
     <% end %>
     <% if policy(@wiki).destroy? %>
       <%= link_to "Delete wiki", wiki_path(@wiki), class: 'red btn', method: :delete, data: {confirm: 'Are you sure you want to delete this Wiki?'} %>
+    <% end %><br /><br />
+    <% if @collaborators.present? %>
+      <h5>Collaborators</h5>
+      <table class="bordered hoverable">
+        <tbody>
+          <% @collaborators.each do |user| %>
+            <tr>
+              <td class="center-align"><%= user.name %></td>
+            </tr>
+          <% end %>  
+        </tbody>
+      </table>
     <% end %>
   </div>
   

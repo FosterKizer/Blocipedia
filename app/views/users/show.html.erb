@@ -5,7 +5,7 @@
     
     <table class="bordered hoverable">
       <tbody>
-        <% @user.wikis.each do |wiki| %>
+        <% @wikis.each do |wiki| %>
           <tr>
             <td><%= link_to wiki.title, wiki_path(wiki.id) %></td>
             <td class="right-align"><%= link_to "Edit", edit_wiki_path(wiki), class: 'black-text' %></td>
@@ -14,6 +14,20 @@
         <% end %>  
       </tbody>
     </table><br /><br />
+    
+    <% if @collaborations.present? %>
+      <h4 class="center-align">Wikis I collaborate on</h4><br />
+      <table class="bordered hoverable">
+        <tbody>
+          <% @collaborations.each do |wiki| %>
+            <tr>
+              <td><%= link_to wiki.title, wiki_path(wiki.id) %></td>
+              <td class="right-align"><%= link_to "Edit", edit_wiki_path(wiki), class: 'black-text' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+          <% end %>  
+        </tbody>
+      </table><br /><br />
+    <% end %>
     
     <div class="center-align">
       <%= link_to "New Wiki", new_user_wiki_path(@user, @wiki), class: 'btn grey darken-1' %>
