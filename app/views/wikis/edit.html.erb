@@ -14,12 +14,19 @@
         <%= f.label :body %>
         <%= f.text_area :body, class: 'materialize-textarea', id: 'textarea1' %>
       </div><br />
-      
+    
       <div class="field center-align">
         <%= f.submit "Save", class: 'btn grey darken-1' %>
-      </div>
+      </div><br /><br />
     
-    <% end %>
-    
+    <% end %>  
   </div>
+  
+  <% if @user.role == 'premium' %>
+    <div class="col s2"><br />
+      <h6>Add collaborators?</h6><br />
+      <%= link_to "Collaborators", new_wiki_collaborator_path(@wiki, @collaborator), class: 'btn grey darken-1' %>
+    </div>
+  <% end %>
+  
 </div>
