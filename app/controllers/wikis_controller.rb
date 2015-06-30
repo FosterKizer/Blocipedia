@@ -1,12 +1,12 @@
 class WikisController < ApplicationController
   
   def index
-    @wikis = Wiki.visible_to(current_user)
-    authorize @wikis
+    @wikis = policy_scope(Wiki)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.users
     authorize @wiki
   end
 
@@ -39,7 +39,7 @@ class WikisController < ApplicationController
     @user = current_user
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    if @wiki.update_attributes(wiki_params)
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :user_id, :private, :collaborator_id, :user_ids => []))
       redirect_to @wiki
     else
       flash[:error] = "Error saving wiki. Please try again"
@@ -64,7 +64,7 @@ class WikisController < ApplicationController
   private
   
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :user_id, :private)
+    params.require(:wiki).permit(:title, :body, :user_id, :private, :collaborator_id)
   end
   
 end
